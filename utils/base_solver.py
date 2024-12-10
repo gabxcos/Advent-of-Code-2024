@@ -4,12 +4,12 @@ from datetime import timedelta
 import time
 
 class BaseSolver:
-    def __init__(self, day: int = -1, raw: bool = True, skip_test: bool = False, benchmark: bool = True):
+    def __init__(self, day: int = -1, raw: bool = True, skip_test: bool = False, elapsed: bool = True):
         self.day = day
         self.day_string = str(day).zfill(2)
         self.raw = raw
         self.skip_test = skip_test
-        self.benchmark = benchmark
+        self.elapsed = elapsed
         self.test_data = puzzle_read(day_string=self.day_string, test=True)
         self.test_solutions = test_solutions.get(self.day_string, [None, None])
         self.data = puzzle_read(self.day_string)
@@ -38,7 +38,7 @@ class BaseSolver:
         elapsed = time.time() - start
 
         print(f"Computed solution: {result}")
-        if self.benchmark: print(f"Time elapsed: {timedelta(seconds=elapsed)}")
+        if self.elapsed: print(f"Time elapsed: {timedelta(seconds=elapsed)}")
         print()
         
         return result

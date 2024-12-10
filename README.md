@@ -46,7 +46,7 @@ In order to do so, the plaintext of the sample input and of your personal input 
 This is the general usage helper, provided by Python's `argparse`:
 
 ```
-usage: runner.py [-h] [-d day_number] [-p part_number] [--optimal] [--skip-test] [--no-benchmark] [--run-all]
+usage: runner.py [-h] [-d day_number] [-p part_number] [--optimal] [--skip-test] [--no-elapsed] [--run-all]
 
 Bulk runner of gabxcos' Advent of Code 2024 solutions
 
@@ -58,7 +58,7 @@ options:
                         Required, part number of the day of the AoC event
   --optimal             Optional, use the intended optimal solution instead of the one I actually came up with
   --skip-test           Optional, skipping tests
-  --no-benchmark        Optional, avoid benchmark prints
+  --no-elapsed        Optional, avoid elapsed prints
   --run-all             Optional, runs all available days with the given options; if set, -d and -p are ignored
 ```
 
@@ -82,4 +82,4 @@ options:
 
 - running all available naive solutions without measuring elapsed time:
 
-    ```python -m runner --run-all --no-benchmark```
+    ```python -m runner --run-all --no-elapsed```

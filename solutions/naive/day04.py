@@ -6,8 +6,8 @@ class PlaceboSplitter(BaseLinesSplitter):
         return self.lines
 
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, benchmark: bool = True):
-        super().__init__(day=4, raw=True, skip_test=skip_test, benchmark=benchmark)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True):
+        super().__init__(day=4, raw=True, skip_test=skip_test, elapsed=elapsed)
         self.test_data = PlaceboSplitter(self.test_data).split()
         self.data = PlaceboSplitter(self.data).split()
 

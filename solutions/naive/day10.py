@@ -6,8 +6,8 @@ class MatrixIntSplitter(BaseLinesSplitter):
         return [[int(el) for el in list(l)] for l in self.lines]
     
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, benchmark: bool = True):
-        super().__init__(day=10, raw=True, skip_test=skip_test, benchmark=benchmark)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True):
+        super().__init__(day=10, raw=True, skip_test=skip_test, elapsed=elapsed)
         self.test_data = MatrixIntSplitter(self.test_data).split()
         self.data = MatrixIntSplitter(self.data).split()
 

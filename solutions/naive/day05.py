@@ -12,8 +12,8 @@ class RulesAndUpdatesSplitter(BaseLinesSplitter):
 
 
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, benchmark: bool = True):
-        super().__init__(day=5, raw=True, skip_test=skip_test, benchmark=benchmark)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True):
+        super().__init__(day=5, raw=True, skip_test=skip_test, elapsed=elapsed)
         self.test_data = RulesAndUpdatesSplitter(self.test_data).split()
         self.data = RulesAndUpdatesSplitter(self.data).split()
 

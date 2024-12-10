@@ -6,8 +6,8 @@ class CoupleSplitter(BaseLinesSplitter):
         return [(int(l.split(" ")[0]), int(l.split(" ")[-1])) for l in self.lines]
 
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, benchmark: bool = True):
-        super().__init__(day=1, raw=True, skip_test=skip_test, benchmark=benchmark)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True):
+        super().__init__(day=1, raw=True, skip_test=skip_test, elapsed=elapsed)
         self.test_data = CoupleSplitter(self.test_data).split()
         self.data = CoupleSplitter(self.data).split()
 

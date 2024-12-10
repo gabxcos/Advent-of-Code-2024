@@ -7,8 +7,8 @@ class AlternateSplitter(BaseLinesSplitter):
         return [ int_list[0::2], int_list[1::2] ]
     
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, benchmark: bool = True):
-        super().__init__(day=9, raw=True, skip_test=skip_test, benchmark=benchmark)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True):
+        super().__init__(day=9, raw=True, skip_test=skip_test, elapsed=elapsed)
         self.test_data = AlternateSplitter(self.test_data).split()
         self.data = AlternateSplitter(self.data).split()
 
