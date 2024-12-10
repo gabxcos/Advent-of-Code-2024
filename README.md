@@ -35,6 +35,16 @@ Both folder have a dedicated `README.md` with some personal commentary on specif
 
 ## How to run
 
+### Preparing the puzzles
+
+For each day you intend to test my solutions against, you need to provide manually the puzzle inputs (see why [here](https://www.reddit.com/r/adventofcode/comments/zdz8qa/license_of_the_input_data/)).
+
+In order to do so, the plaintext of the sample input and of your personal input need to be put respectively in two distinct files, in `inputs/test/09` and `inputs/puzzle/09` assuming you're testing just day 9 (in general, the file name is the zero-fill at two positions of a given day).
+
+### Usage
+
+This is the general usage helper, provided by Python's `argparse`:
+
 ```
 usage: runner.py [-h] [-d day_number] [-p part_number] [--optimal] [--skip-test] [--no-benchmark] [--run-all]
 
@@ -51,3 +61,25 @@ options:
   --no-benchmark        Optional, avoid benchmark prints
   --run-all             Optional, runs all available days with the given options; if set, -d and -p are ignored
 ```
+
+### Examples
+
+- running for part 2 of day 9:
+
+    ```python -m runner -d 9 -p 2```
+
+- running all available naive solutions:
+
+    ```python -m runner --run-all```
+
+- running all available optimal solutions:
+
+    ```python -m runner --optimal --run-all```
+
+- running all available naive solutions without testing sample inputs:
+
+    ```python -m runner --run-all --skip-test```
+
+- running all available naive solutions without measuring elapsed time:
+
+    ```python -m runner --run-all --no-benchmark```
