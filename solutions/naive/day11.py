@@ -3,7 +3,7 @@ from utils.puzzle_reader import BaseLinesSplitter
 import numpy as np
 from matplotlib import pyplot as plt
 from scipy.optimize import curve_fit
-from math import exp, log
+from math import exp
 
 
 class OneLineIntSplitter(BaseLinesSplitter):
@@ -32,6 +32,29 @@ class Solver(BaseSolver):
                 new_line.append(num * 2024)
         return new_line
     
+    @staticmethod
+    def dict_blink(d):
+        new_d = {}
+        for num in d:
+            new_num = []
+            if num==0:
+                new_num.append(1)
+            elif (len(str(num))%2) == 0:
+                mid_point = len(str(num))//2
+                n_a = int(str(num)[:mid_point])
+                n_b = int(str(num)[mid_point:])
+                new_num.extend([n_a, n_b])
+            else:
+                new_num.append(num * 2024)
+
+            for n in new_num:
+                if n in new_d:
+                    new_d[n] += d[num]
+                else:
+                    new_d[n] = d[num]
+
+        return new_d
+
 
     def part_1(self, data):
         l_x = [0]
@@ -42,7 +65,7 @@ class Solver(BaseSolver):
             l_y.append(len(data))
 
         if self.debug:
-            # Do some experimentations for exponential curve fitting
+            # Test 1: Do some experimentations for exponential curve fitting
             x = np.array(l_x)#.reshape((-1, 1))
             y = np.array(l_y)
 
@@ -60,10 +83,29 @@ class Solver(BaseSolver):
             plt.plot(x,y_test_scipy) 
             plt.show()
 
-            print("Estimate for 75: ", res_opt[0][0] * exp(res_opt[0][1] * 75))
+            print("Estimate for 75: ", res_opt[0][0] * exp(res_opt[0][1] * 75), "\n")
+
+            # Test 2: Searching for a function for invariants
+            print("Testing first 25 iterations for invariant 0:")
+            inv_data = [0]
+            inv_l_x = [0]
+            inv_l_y = [len(inv_data)]
+            print(f"{inv_l_x[0]}: {inv_l_y[0]} --> {inv_data}")
+            for i in range(1, 26):
+                inv_data = Solver.blink(inv_data)
+                inv_l_x.append(i)
+                inv_l_y.append(len(inv_data))
+                if i < 11:
+                    print(f"{inv_l_x[i]}: {inv_l_y[i]} --> {inv_data}")
+            print(inv_l_y)
 
         return l_y[25]
     
     def part_2(self, data):
-        return 0
+        d = { k : data.count(k) for k in list(set(data))}
+
+        for _ in range(75):
+            d = Solver.dict_blink(d)
+        
+        return sum(list(d.values()))
     

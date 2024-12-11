@@ -18,11 +18,11 @@ class BaseSolver:
     def test(self, part: int = 1):
         func = getattr(self, f"part_{part}")
         result = func(self.test_data)
-        computed = self.test_solutions[part-1]
-        if (result is None):
-            print("No test available, computed:", computed)
+        sol = self.test_solutions[part-1]
+        if (sol is None):
+            print("No test available, computed:", result)
             return True
-        elif result==computed:
+        elif result==sol:
             print("Test passed!")
             return True
         else:
