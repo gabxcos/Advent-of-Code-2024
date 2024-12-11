@@ -2,9 +2,9 @@ import argparse, importlib, datetime
 
 _today = datetime.date.today().day
 
-def solve(day: int = -1, part: int = -1, optimal: bool = False, skip_test: bool = False, elapsed: bool = True):
+def solve(day: int = -1, part: int = -1, optimal: bool = False, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
     try:
-        solution = importlib.import_module(f"solutions.{'optimal' if optimal else 'naive'}.day{day:02d}").Solver(skip_test, elapsed).solve(part)
+        solution = importlib.import_module(f"solutions.{'optimal' if optimal else 'naive'}.day{day:02d}").Solver(skip_test, elapsed, debug).solve(part)
         return solution
     except:
         if not 0 < day < 26: print("Day number must be between 1 and 25")
@@ -13,20 +13,20 @@ def solve(day: int = -1, part: int = -1, optimal: bool = False, skip_test: bool 
         return None
 
 
-def solve_all_until(day: int = min(_today, 25), optimal: bool = False, skip_test: bool = False, elapsed: bool = True):
+def solve_all_until(day: int = min(_today, 25), optimal: bool = False, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
     solutions = {d:[] for d in range(1, day+1)}
     for d in range(1, day+1):
         print(f"# Day {d}:")
         for p in [1,2]:
             print(f"- Part {p}:")
-            solutions[d].append( solve(d, p, optimal, skip_test, elapsed) )
+            solutions[d].append( solve(d, p, optimal, skip_test, elapsed, debug) )
         print("-"*20)
     
     return solutions
 
 
-def solve_all(optimal: bool = False, skip_test: bool = False, elapsed: bool = True):
-    return solve_all_until(25, optimal, skip_test, elapsed)
+def solve_all(optimal: bool = False, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
+    return solve_all_until(25, optimal, skip_test, elapsed, debug)
 
 
 def main():
@@ -36,11 +36,12 @@ def main():
     parser.add_argument("--optimal", action="store_true", help="Optional, use the intended optimal solution instead of the one I actually came up with")
     parser.add_argument("--skip-test", action="store_true", help="Optional, skipping tests")
     parser.add_argument("--no-elapsed", action="store_true", help="Optional, avoid elapsed prints")
+    parser.add_argument("--debug", action="store_true", help="Optional, add debug prints and computations, if available")
     parser.add_argument("--run-all", action="store_true", help="Optional, runs all available days with the given options; if set, -d and -p are ignored")
     args = parser.parse_args()
 
     if args.run_all:
-        solve_all_until(optimal=args.optimal, skip_test=args.skip_test, elapsed=not args.no_elapsed)
+        solve_all_until(optimal=args.optimal, skip_test=args.skip_test, elapsed=not args.no_elapsed, debug=args.debug)
     else:
         if not 0 < args.day < 26:
             print("Day number must be between 1 and 25")
@@ -50,7 +51,7 @@ def main():
             exit()
         else:
             print(f"Solving day {args.day} part {args.part}:\n")
-            solve(day=args.day, part=args.part, optimal=args.optimal, skip_test=args.skip_test, elapsed=not args.no_elapsed)
+            solve(day=args.day, part=args.part, optimal=args.optimal, skip_test=args.skip_test, elapsed=not args.no_elapsed, debug=args.debug)
 
 if __name__=="__main__":
     main()

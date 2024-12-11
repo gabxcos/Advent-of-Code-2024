@@ -7,9 +7,9 @@ My personal solutions to [Advent of Code 2024](https://adventofcode.com/2024/), 
 
 ## Solutions
 
-![](https://img.shields.io/badge/days_📅-10-blue)
-![](https://img.shields.io/badge/stars_⭐-20-yellow)
-![](https://img.shields.io/badge/half_stars_🌗-0-white)
+![](https://img.shields.io/badge/days_completed_📅-10-blue)
+![](https://img.shields.io/badge/stars_⭐-21-yellow)
+![](https://img.shields.io/badge/half_stars_🌗-1-white)
 
 For each day, a single ⭐ is listed if only the first part of the puzzle was solved, and both ⭐⭐ if both parts are solved correctly.
 
@@ -25,6 +25,7 @@ For each day, a single ⭐ is listed if only the first part of the puzzle was so
 | 08  |        ⭐⭐       |         --        |
 | 09  |        ⭐⭐       |         --        |
 | 10  |        ⭐⭐       |         --        |
+| 11  |        ⭐🌗       |         --        |
 
 ### What is the difference between "naive" and "optimal" solutions?
 
@@ -60,6 +61,7 @@ options:
   --optimal             Optional, use the intended optimal solution instead of the one I actually came up with
   --skip-test           Optional, skipping tests
   --no-elapsed        Optional, avoid elapsed prints
+  --debug               Optional, add debug prints and computations, if available
   --run-all             Optional, runs all available days with the given options; if set, -d and -p are ignored
 ```
 
@@ -84,3 +86,7 @@ options:
 - running all available naive solutions without measuring elapsed time:
 
     ```python -m runner --run-all --no-elapsed```
+
+- running all available naive solutions with debug computations:
+
+    ```python -m runner --run-all --debug```

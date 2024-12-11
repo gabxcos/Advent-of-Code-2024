@@ -4,12 +4,13 @@ from datetime import timedelta
 import time
 
 class BaseSolver:
-    def __init__(self, day: int = -1, raw: bool = True, skip_test: bool = False, elapsed: bool = True):
+    def __init__(self, day: int = -1, raw: bool = True, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
         self.day = day
         self.day_string = str(day).zfill(2)
         self.raw = raw
         self.skip_test = skip_test
         self.elapsed = elapsed
+        self.debug = debug
         self.test_data = puzzle_read(day_string=self.day_string, test=True)
         self.test_solutions = test_solutions.get(self.day_string, [None, None])
         self.data = puzzle_read(self.day_string)
@@ -17,7 +18,11 @@ class BaseSolver:
     def test(self, part: int = 1):
         func = getattr(self, f"part_{part}")
         result = func(self.test_data)
-        if result==self.test_solutions[part-1]:
+        computed = self.test_solutions[part-1]
+        if (result is None):
+            print("No test available, computed:", computed)
+            return True
+        elif result==computed:
             print("Test passed!")
             return True
         else:

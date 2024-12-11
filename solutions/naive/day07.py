@@ -22,8 +22,8 @@ class TupleSplitter(BaseLinesSplitter):
         return [[int(num) for num in l.replace(":","").split(" ")] for l in self.lines]
 
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, elapsed: bool = True):
-        super().__init__(day=7, raw=True, skip_test=skip_test, elapsed=elapsed)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
+        super().__init__(day=7, raw=True, skip_test=skip_test, elapsed=elapsed, debug=debug)
         self.test_data = TupleSplitter(self.test_data).split()
         self.data = TupleSplitter(self.data).split()
 

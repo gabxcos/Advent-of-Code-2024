@@ -7,8 +7,8 @@ class WholeLineSplitter(BaseLinesSplitter):
         return "".join(self.lines)
 
 class Solver(BaseSolver):
-    def __init__(self, skip_test: bool = False, elapsed: bool = True):
-        super().__init__(day=3, raw=True, skip_test=skip_test, elapsed=elapsed)
+    def __init__(self, skip_test: bool = False, elapsed: bool = True, debug: bool = False):
+        super().__init__(day=3, raw=True, skip_test=skip_test, elapsed=elapsed, debug=debug)
         self.test_data = WholeLineSplitter(self.test_data).split()
         self.data = WholeLineSplitter(self.data).split()
 
