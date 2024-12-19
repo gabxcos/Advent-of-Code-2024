@@ -1,6 +1,5 @@
 from utils.base_solver import BaseSolver
 from utils.puzzle_reader import BaseLinesSplitter
-from itertools import product
 
 
 class MachineSplitter(BaseLinesSplitter):
