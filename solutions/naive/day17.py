@@ -1,4 +1,3 @@
-import time
 from utils.base_solver import BaseSolver
 from utils.puzzle_reader import BaseLinesSplitter
 
