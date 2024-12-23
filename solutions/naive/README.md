@@ -25,3 +25,9 @@ Now, that means that I could try 10^12 different values (a thousand billions) an
 Considering there is a 60 seconds cooldown between attempts (assuming no other anti-spam measures), that would take around **1.9 million years**!
 
 Just goes to show how there is no easy way out to solving these puzzles...
+
+### Day 19
+
+This is the first day after the first I was able to come up with an optimal solution at first try!
+
+Luckily I already knew the optimal solution from the base problem (searching if any combination of words matches a string), and adapting it in order to keep a count of all intermediate solutions (instead of a simple True / False) was also quite easy!
