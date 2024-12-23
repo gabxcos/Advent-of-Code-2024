@@ -108,7 +108,6 @@ class Solver(BaseSolver):
         self.setup(data)
         while len(self.reindeers)>0:
             self.update_reindeers()
-            print(len(self.reindeers), len(self.finished_reindeers))
             if self.debug: 
                 self.print_maze()
                 time.sleep(0.1)
@@ -118,7 +117,6 @@ class Solver(BaseSolver):
         self.setup(data)
         while len(self.reindeers)>0:
             self.update_reindeers()
-            print(len(self.reindeers), len(self.finished_reindeers))
             if self.debug: 
                 self.print_maze()
                 time.sleep(0.1)
