@@ -1,5 +1,3 @@
-from functools import reduce
-from operator import mul
 from utils.base_solver import BaseSolver
 from utils.puzzle_reader import BaseLinesSplitter
 
